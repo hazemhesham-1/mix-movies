@@ -9,7 +9,7 @@ export async function handler(event, context) {
     if(id) {
         url = `${BASE_URL}?i=${id}&apikey=${API_KEY}`;
     }
-    else if(id) {
+    else if(search) {
         url = `${BASE_URL}?s=${search}&apikey=${API_KEY}`;
     }
     else {
