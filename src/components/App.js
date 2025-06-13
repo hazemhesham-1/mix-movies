@@ -57,10 +57,10 @@ function App() {
     const [language, setLanguage] = useState(defaultLanguage);
 
     function handleChangeLanguage(code) {
-        if (code == "en") {
+        if(code === "en") {
             setLanguage({ text: langData.English, code, isRTL: false });
         }
-		else if (code == "ar") {
+		else if(code === "ar") {
 			setLanguage({ text: langData.Arabic, code, isRTL: true });
         }
     }

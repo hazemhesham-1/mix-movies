@@ -4,7 +4,7 @@ import RatingBox from "./RatingBox";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 
-const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
+const MovieDetails = ({ id, watched, onAddMovie, onClose, language }) => {
     const [movie, setMovie] = useState({});
     const [rating, setRating] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +13,7 @@ const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
     
     useKey("Escape", onClose);
 
-    const watchedMovieRating = watched.find(movie => id == movie.imdbID)?.userRating;
+    const watchedMovieRating = watched.find((movie) => id === movie.imdbID)?.userRating;
 
     useEffect(() => {
         async function fetchMovieById() {

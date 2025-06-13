@@ -1,6 +1,7 @@
 const Stats = ({ movies, language }) => {
     function average(arr) {
-        if(arr.length == 0) return 0;
+        if(arr.length === 0) return 0;
+        
         let sum = arr.reduce((total, num) => Number(total) + Number(num));
         return (sum / arr.length);
     }

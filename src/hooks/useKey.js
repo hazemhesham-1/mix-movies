@@ -3,7 +3,9 @@ import { useEffect } from "react";
 export function useKey(key, callback) {
     useEffect(() => {
         function handleKeyPress(e) {
-            if(e.key == key) callback();
+            if(e.key !== key) return;
+            
+            callback();
         }
         
         document.addEventListener('keydown', handleKeyPress);
