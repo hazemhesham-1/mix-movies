@@ -14,10 +14,6 @@ import Loader from './Loader';
 import ErrorMessage from './ErrorMessage';
 import MovieDetails from './MovieDetails';
 
-//const API_KEY = "3063d555";
-//const API_KEY = "f84fc31d";
-const API_KEY = "50a82fb";
-
 const langData = {
   English: {
     title: "Mix Movies",
@@ -118,6 +114,6 @@ function App() {
       <Footer language={language} onChangeLanguage={handleChangeLanguage}/>
     </div>
   );
-}
+};
 
 export default App;

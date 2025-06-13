@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useKey } from "../hooks/useKey";
 import RatingBox from "./RatingBox";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
-import { useKey } from "../hooks/useKey";
 
-const API_KEY = "3063d555";
-//const API_KEY = "f84fc31d";
+const API_KEY = process.env.API_KEY;
 
 const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
     const [movie, setMovie] = useState({});
@@ -23,11 +22,16 @@ const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
             try {
                 setIsLoading(true);
                 setError("");
-                const res = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`);
-                if(!res.ok) throw new Error("Something went wrong");
+
+                // const res = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`);
+                const res = await fetch(`/api/data?id=${id}`);
+                if(!res.ok) {
+                    throw new Error("Something went wrong !");
+                }
+
                 const json = await res.json();
 
-                setMovie({...json, userRating: watchedMovieRating});
+                setMovie({ ...json, userRating: watchedMovieRating });
                 setRating(watchedMovieRating);
             }
             catch(err) {
@@ -68,55 +72,55 @@ const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
 
     return (
         <>
-        {isLoading && <Loader language={language}/>}
-        {!isLoading && error && <ErrorMessage error={error} language={language}/>}
-        {!isLoading && !error &&
-            <div className="details">
-                <button className="back-btn" onClick={onClose}>
-                    <i className="fa fa-arrow-left"></i>
-                </button>
-                <header>
-                    <img src={movie.Poster} alt={`${movie.Title}-poster`} />
-                    <div>
-                        <h2>{movie.Title}</h2>
-                        <p>{movie.Released} • {movie.Runtime}</p>
-                        <p>{movie.Genre}</p>
-                        <p>
-                            <span>⭐</span>
-                            <span>{movie.imdbRating} IMDb rating</span>
-                        </p>
-                    </div>
-                </header>
-                <section>
-                    <div className="rating-box">
-                        <RatingBox
-                            userRating={rating}
-                            onSetRating={setRating}
-                            maxRating={10}
-                            size={22}
-                        />
-                        {!!watchedMovieRating &&
-                            <p className={language.isRTL? 'rtl' : ''}>
-                                <strong>{language.text.alreadyWatched}</strong>
+            {isLoading && <Loader language={language}/>}
+            {!isLoading && error && <ErrorMessage error={error} language={language}/>}
+            {!isLoading && !error && (
+                <div className="details">
+                    <button className="back-btn" onClick={onClose}>
+                        <i className="fa fa-arrow-left"></i>
+                    </button>
+                    <header>
+                        <img src={movie.Poster} alt={`${movie.Title}-poster`} />
+                        <div>
+                            <h2>{movie.Title}</h2>
+                            <p>{movie.Released} • {movie.Runtime}</p>
+                            <p>{movie.Genre}</p>
+                            <p>
+                                <span>⭐</span>
+                                <span>{movie.imdbRating} IMDb rating</span>
                             </p>
-                        }
-                        {!watchedMovieRating && !!rating &&
-                            <button
-                                className="add-btn"
-                                onClick={() => handleAddMovie(movie)}
-                            >
-                                {language.text.add}
-                            </button>
-                        }
-                    </div>
-                    <p>{movie.Plot}</p>
-                    <p>Starring {movie.Actors}</p>
-                    <p>Directed by {movie.Director}</p>
-                </section>
-            </div>
-        }
+                        </div>
+                    </header>
+                    <section>
+                        <div className="rating-box">
+                            <RatingBox
+                                userRating={rating}
+                                onSetRating={setRating}
+                                maxRating={10}
+                                size={22}
+                            />
+                            {!!watchedMovieRating && (
+                                <p className={language.isRTL? 'rtl' : ''}>
+                                    <strong>{language.text.alreadyWatched}</strong>
+                                </p>
+                            )}
+                            {!watchedMovieRating && !!rating && (
+                                <button
+                                    className="add-btn"
+                                    onClick={() => handleAddMovie(movie)}
+                                >
+                                    {language.text.add}
+                                </button>
+                            )}
+                        </div>
+                        <p>{movie.Plot}</p>
+                        <p>Starring {movie.Actors}</p>
+                        <p>Directed by {movie.Director}</p>
+                    </section>
+                </div>
+            )}
         </>
     );
-}
+};
 
 export default MovieDetails;
