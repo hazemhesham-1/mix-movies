@@ -21,7 +21,7 @@ export function useMovies(query) {
 
                 const json = await res.json();
 
-                if(json.Response === 'False') {
+                if(json.Response === "False") {
                     setMovies([]);
                     throw new Error("No movies were found");
                 }

@@ -16,7 +16,7 @@ const SearchBar = ({query, onChangeQuery, language}) => {
             value={query}
             onChange={(e) => onChangeQuery(e.target.value)}
             placeholder={language.text.search}
-            dir={language.isRTL? 'rtl' : 'ltr'}
+            dir={language.isRTL? "rtl" : "ltr"}
             ref={inputElement}
         />
     );

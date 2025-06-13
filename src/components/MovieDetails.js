@@ -41,11 +41,11 @@ const MovieDetails = ({ id, watched, onAddMovie, onClose, language }) => {
         }
 
         fetchMovieById();
-    }, []);
+    }, [id, watchedMovieRating]);
 
     useEffect(() => {
         if(!movie.Title) return;
-        document.title = `${language.code != "en" ? language.text.movie : "Movie"} | ${movie.Title}`;
+        document.title = `${language.code !== "en" ? language.text.movie : "Movie"} | ${movie.Title}`;
 
         return () => { document.title = language.text.title; };
     }, [movie, language]);

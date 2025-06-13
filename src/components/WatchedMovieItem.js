@@ -1,10 +1,11 @@
-import MovieItem from './MovieItem';
+import MovieItem from "./MovieItem";
 
-const WatchedMovieItem = ({movie, onShowMovieDetails, onRemove, language}) => {
+const WatchedMovieItem = ({ movie, onShowMovieDetails, onRemove, language }) => {
     function handleClick(e) {
         e.stopPropagation();
         onRemove(movie.imdbID);
     }
+
     return (
         <MovieItem movie={movie} onShowMovieDetails={onShowMovieDetails}>
             <p>
@@ -22,6 +23,6 @@ const WatchedMovieItem = ({movie, onShowMovieDetails, onRemove, language}) => {
             <button className="remove-btn" onClick={handleClick}>&times;</button>
         </MovieItem>
     );
-}
+};
 
 export default WatchedMovieItem;

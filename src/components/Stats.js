@@ -15,7 +15,7 @@ const Stats = ({ movies, language }) => {
             <div>
                 <p>
                     <span>🎬</span>
-                    <span style={language.isRTL ? { direction: 'rtl' } : {}}>{numMovies} {language.text.movies}</span>
+                    <span style={language.isRTL ? { direction: "rtl" } : {}}>{numMovies} {language.text.movies}</span>
                 </p>
                 <p>
                     <span>⭐</span>
@@ -27,7 +27,7 @@ const Stats = ({ movies, language }) => {
                 </p>
                 <p>
                     <span>⌛</span>
-                    <span style={language.isRTL ? { direction: 'rtl' } : {}}>{Math.round(avgRunTime)} {language.text.minutes}</span>
+                    <span style={language.isRTL ? { direction: "rtl" } : {}}>{Math.round(avgRunTime)} {language.text.minutes}</span>
                 </p>
             </div>
         </div>

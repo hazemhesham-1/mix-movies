@@ -8,10 +8,10 @@ export function useKey(key, callback) {
             callback();
         }
         
-        document.addEventListener('keydown', handleKeyPress);
+        document.addEventListener("keydown", handleKeyPress);
 
         return () => {
-            document.removeEventListener('keydown', handleKeyPress);
+            document.removeEventListener("keydown", handleKeyPress);
         };
     }, [key, callback]);
 }

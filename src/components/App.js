@@ -15,7 +15,7 @@ import ErrorMessage from "./ErrorMessage";
 import MovieDetails from "./MovieDetails";
 
 const langData = {
-    English: {
+    en: {
         title: "Mix Movies",
         search: "Search movies...",
         found: "Found",
@@ -27,7 +27,7 @@ const langData = {
         minutes: "min",
         loading: "loading",
     },
-    Arabic: {
+    ar: {
         title: "ميكس سينما",
         search: "بحث أفلام...",
         found: "تم العثور على",
@@ -44,7 +44,7 @@ const langData = {
 };
 
 const defaultLanguage = {
-    text: langData.English,
+    text: langData.en,
     code: "en",
     isRTL: false,
 };
@@ -58,10 +58,10 @@ function App() {
 
     function handleChangeLanguage(code) {
         if(code === "en") {
-            setLanguage({ text: langData.English, code, isRTL: false });
+            setLanguage({ text: langData.en, code, isRTL: false });
         }
 		else if(code === "ar") {
-			setLanguage({ text: langData.Arabic, code, isRTL: true });
+			setLanguage({ text: langData.ar, code, isRTL: true });
         }
     }
 
@@ -70,7 +70,7 @@ function App() {
     }
 
     function handleRemoveMovie(id) {
-        setWatched((watched) => watched.filter((movie) => movie.imdbID != id));
+        setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
     }
 
     return (

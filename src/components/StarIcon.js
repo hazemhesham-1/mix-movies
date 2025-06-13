@@ -8,7 +8,7 @@ const StarIcon = ({
   return (
     <i
       className="fa fa-star"
-      style={isChecked ? style : { ...style, color: '' }}
+      style={isChecked ? style : { ...style, color: "" }}
       onClick={onClick}
       onMouseEnter={onHoverIn}
       onMouseLeave={onHoverOut}
