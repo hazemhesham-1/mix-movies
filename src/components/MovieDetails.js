@@ -4,8 +4,6 @@ import RatingBox from "./RatingBox";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 
-const API_KEY = process.env.API_KEY;
-
 const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
     const [movie, setMovie] = useState({});
     const [rating, setRating] = useState(0);
@@ -47,13 +45,15 @@ const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
 
     useEffect(() => {
         if(!movie.Title) return;
-        document.title = `${language.code != 'en'? language.text.movie : 'Movie'} | ${movie.Title}`;
+        document.title = `${language.code != "en" ? language.text.movie : "Movie"} | ${movie.Title}`;
 
         return () => { document.title = language.text.title; };
-    }, [movie]);
+    }, [movie, language]);
 
     useEffect(() => {
-        if(rating !== 0) countRef.current++;
+        if(rating === 0) return;
+
+        countRef.current++;
     }, [rating]);
     
     function handleAddMovie(movie) {
@@ -100,7 +100,7 @@ const MovieDetails = ({ id, watched, onAddMovie, onClose, language}) => {
                                 size={22}
                             />
                             {!!watchedMovieRating && (
-                                <p className={language.isRTL? 'rtl' : ''}>
+                                <p className={language.isRTL? "rtl" : ""}>
                                     <strong>{language.text.alreadyWatched}</strong>
                                 </p>
                             )}

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-const API_KEY = process.env.API_KEY;
-
 export function useMovies(query) {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
